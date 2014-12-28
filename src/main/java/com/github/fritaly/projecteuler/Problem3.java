@@ -16,7 +16,7 @@ public class Problem3 {
 		final long input = 600851475143L;
 
 		// Find all the prime numbers between 3 and Math.sqrt(input)
-		final long upperBound = (int) Math.sqrt(input);
+		final int upperBound = (int) Math.sqrt(input);
 
 		System.out.println(upperBound);
 

@@ -1,6 +1,7 @@
 package com.github.fritaly.projecteuler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -8,37 +9,24 @@ import java.util.TreeSet;
 public class Utils {
 
 	// Implementation of "Sieve of Eratosthenes"
-	public static Set<Long> getPrimeNumbers(long limit) {
+	public static Set<Long> getPrimeNumbers(int limit) {
+		final boolean[] array = new boolean[limit + 1];
+
+		Arrays.fill(array, true);
+
+		for (int i = 2; i <= (int) Math.sqrt(limit); i++) {
+			if (array[i]) {
+				for (int j = i * i; j <= limit; j += i) {
+					array[j] = false;
+				}
+			}
+		}
+
 		final Set<Long> primeNumbers = new TreeSet<>();
-		primeNumbers.add(2L);
 
-		// All the multiple numbers of the prime numbers we identified
-		final Set<Long> skip = new TreeSet<>();
-
-		// Only consider the odd numbers
-		for (long n = 3; n <= limit; n += 2) {
-			if (skip.contains(n)) {
-				continue;
-			}
-
-			boolean prime = true;
-
-			for (Long primeNumber : primeNumbers) {
-				if (n % primeNumber == 0) {
-					prime = false;
-					break;
-				}
-			}
-
-			if (prime) {
-				// System.out.println(n + " is prime");
-
-				primeNumbers.add(n);
-
-				// Skip all the numbers which are multiple of this prime number
-				for (long i = n + n; i < limit; i += n) {
-					skip.add(i);
-				}
+		for (int i = 2; i < array.length; i++) {
+			if (array[i]) {
+				primeNumbers.add(new Long(i));
 			}
 		}
 
@@ -75,7 +63,7 @@ public class Utils {
 	}
 
 	public static List<Long> factor(long number) {
-		final Set<Long> primeNumbers = getPrimeNumbers(number);
+		final Set<Long> primeNumbers = getPrimeNumbers((int) number);
 
 		final List<Long> primeFactors = new ArrayList<>();
 
@@ -87,7 +75,7 @@ public class Utils {
 			}
 
 			if (primeNumbers.contains(number)) {
-				primeFactors.add(number);
+				primeFactors.add(new Long(number));
 				break;
 			}
 		}
