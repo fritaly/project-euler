@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Problem "Largest prime factor".
@@ -12,44 +11,6 @@ import java.util.TreeSet;
  * @author francois_ritaly
  */
 public class Problem3 {
-
-	// Implementation of "Sieve of Eratosthenes"
-	private static Set<Long> getPrimeNumbers(long limit) {
-		final Set<Long> primeNumbers = new TreeSet<>();
-		primeNumbers.add(2L);
-
-		// All the multiple numbers of the prime numbers we identified
-		final Set<Long> skip = new TreeSet<>();
-
-		// Only consider the odd numbers
-		for (long n = 3; n < limit; n += 2) {
-			if (skip.contains(n)) {
-				continue;
-			}
-
-			boolean prime = true;
-
-			for (Long primeNumber : primeNumbers) {
-				if (n % primeNumber == 0) {
-					prime = false;
-					break;
-				}
-			}
-
-			if (prime) {
-				// System.out.println(n + " is prime");
-
-				primeNumbers.add(n);
-
-				// Skip all the numbers which are multiple of this prime number
-				for (long i = n + n; i < limit; i += n) {
-					skip.add(i);
-				}
-			}
-		}
-
-		return primeNumbers;
-	}
 
 	public static void main(String[] args) {
 		final long input = 600851475143L;
@@ -59,7 +20,7 @@ public class Problem3 {
 
 		System.out.println(upperBound);
 
-		final Set<Long> primeNumbers = getPrimeNumbers(upperBound);
+		final Set<Long> primeNumbers = Utils.getPrimeNumbers(upperBound);
 
 		System.out.println(String.format("Identified %d prime numbers", primeNumbers.size()));
 
@@ -75,7 +36,6 @@ public class Problem3 {
 		}
 
 		System.out.println("Product: " + result);
-
 		System.out.println("Result: " + Collections.max(primeFactors));
 	}
 
@@ -83,15 +43,15 @@ public class Problem3 {
 		final List<Long> primeFactors = new ArrayList<>();
 
 		for (Long primeNumber : primeNumbers) {
-			if (number % primeNumber == 0) {
+			while (number % primeNumber == 0) {
 				primeFactors.add(primeNumber);
 
 				number /= primeNumber;
+			}
 
-				if (primeNumbers.contains(number)) {
-					primeFactors.add(number);
-					break;
-				}
+			if (primeNumbers.contains(number)) {
+				primeFactors.add(number);
+				break;
 			}
 		}
 
