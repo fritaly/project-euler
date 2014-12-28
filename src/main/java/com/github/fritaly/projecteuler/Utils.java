@@ -45,6 +45,35 @@ public class Utils {
 		return primeNumbers;
 	}
 
+	public static Long getNthPrimeNumber(long index) {
+		final Set<Long> primeNumbers = new TreeSet<>();
+		primeNumbers.add(2L);
+
+		// Only consider the odd numbers
+		for (long n = 3; n <= Long.MAX_VALUE; n += 2) {
+			boolean prime = true;
+
+			for (Long primeNumber : primeNumbers) {
+				if (n % primeNumber == 0) {
+					prime = false;
+					break;
+				}
+			}
+
+			if (prime) {
+				// System.out.println(n + " is prime");
+
+				primeNumbers.add(n);
+
+				if (primeNumbers.size() == index) {
+					return n;
+				}
+			}
+		}
+
+		throw new UnsupportedOperationException();
+	}
+
 	public static List<Long> factor(long number) {
 		final Set<Long> primeNumbers = getPrimeNumbers(number);
 
