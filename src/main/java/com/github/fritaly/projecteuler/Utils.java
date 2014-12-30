@@ -9,6 +9,22 @@ import java.util.TreeSet;
 
 public class Utils {
 
+	public static boolean isPrimeNumber(int n) {
+		final boolean[] array = new boolean[n + 1];
+
+		Arrays.fill(array, true);
+
+		for (int i = 2; i <= (int) Math.sqrt(n); i++) {
+			if (array[i]) {
+				for (int j = i * i; j <= n; j += i) {
+					array[j] = false;
+				}
+			}
+		}
+
+		return array[n];
+	}
+
 	// Implementation of "Sieve of Eratosthenes"
 	public static Set<Long> getPrimeNumbers(int limit) {
 		final boolean[] array = new boolean[limit + 1];
