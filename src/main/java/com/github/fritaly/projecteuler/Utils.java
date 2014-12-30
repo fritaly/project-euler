@@ -1,5 +1,6 @@
 package com.github.fritaly.projecteuler;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,5 +82,9 @@ public class Utils {
 		}
 
 		return primeFactors;
+	}
+
+	public static BigInteger factorial(int n) {
+		return (n == 0) ? BigInteger.ONE : BigInteger.valueOf(n).multiply(factorial(n - 1));
 	}
 }
