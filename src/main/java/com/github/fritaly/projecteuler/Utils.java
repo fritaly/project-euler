@@ -3,11 +3,50 @@ package com.github.fritaly.projecteuler;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Utils {
+
+	public static List<String> getRotations(String text) {
+		if ("".equals(text)) {
+			return Collections.emptyList();
+		}
+		if (text.length() == 1) {
+			return Collections.singletonList(text);
+		}
+
+		final List<String> rotations = new ArrayList<>();
+
+		for (int i = 0; i < text.length(); i++) {
+			rotations.add(text.substring(i) + text.substring(0, i));
+		}
+
+		return rotations;
+	}
+
+	public static Set<String> getPermutations(String text) {
+		if ("".equals(text)) {
+			return Collections.emptySet();
+		}
+		if (text.length() == 1) {
+			return Collections.singleton(text);
+		}
+
+		final List<String> permutations = new ArrayList<>();
+
+		for (int i = 0; i < text.length(); i++) {
+			final char c = text.charAt(i);
+
+			for (String string : getPermutations(text.substring(0, i) + text.substring(i + 1))) {
+				permutations.add(c + string);
+			}
+		}
+
+		return new TreeSet<>(permutations);
+	}
 
 	public static boolean isPrimeNumber(int n) {
 		final boolean[] array = new boolean[n + 1];
