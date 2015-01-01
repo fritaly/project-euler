@@ -4,11 +4,110 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Utils {
+
+	public static int max(int... values) {
+		int max = Integer.MIN_VALUE;
+
+		for (int value : values) {
+			max = Math.max(max, value);
+		}
+
+		return max;
+	}
+
+	public static long max(long... values) {
+		long max = Long.MIN_VALUE;
+
+		for (long value : values) {
+			max = Math.max(max, value);
+		}
+
+		return max;
+	}
+
+	public static Iterator<Long> createTriangleNumberGenerator() {
+		return new Iterator<Long>() {
+
+			private long n = 1;
+
+			@Override
+			public boolean hasNext() {
+				return true;
+			}
+
+			@Override
+			public Long next() {
+				final long result = n * (n + 1) / 2;
+
+				n++;
+
+				return result;
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
+
+	public static Iterator<Long> createPentagonNumberGenerator() {
+		return new Iterator<Long>() {
+
+			private long n = 1;
+
+			@Override
+			public boolean hasNext() {
+				return true;
+			}
+
+			@Override
+			public Long next() {
+				final long result = n * (3 * n - 1) / 2;
+
+				n++;
+
+				return result;
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
+
+	public static Iterator<Long> createHexagonalNumberGenerator() {
+		return new Iterator<Long>() {
+
+			private long n = 1;
+
+			@Override
+			public boolean hasNext() {
+				return true;
+			}
+
+			@Override
+			public Long next() {
+				final long result = n * (2 * n - 1);
+
+				n++;
+
+				return result;
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
 
 	public static String padLeft(String string, int length, char c) {
 		if (string == null) {
