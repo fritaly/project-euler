@@ -10,6 +10,61 @@ import java.util.TreeSet;
 
 public class Utils {
 
+	public static String padLeft(String string, int length, char c) {
+		if (string == null) {
+			throw new IllegalArgumentException("The given string is null");
+		}
+		if (length < 0) {
+			throw new IllegalArgumentException(String.format("The given length (%d) must be positive or zero", length));
+		}
+		if (string.length() >= length) {
+			return string;
+		}
+
+		final StringBuilder buffer = new StringBuilder(length);
+
+		for (int i = 0; i < length - string.length(); i++) {
+			buffer.append(c);
+		}
+
+		return buffer.append(string).toString();
+	}
+
+	public static String padRight(String string, int length, char c) {
+		if (string == null) {
+			throw new IllegalArgumentException("The given string is null");
+		}
+		if (length < 0) {
+			throw new IllegalArgumentException(String.format("The given length (%d) must be positive or zero", length));
+		}
+		if (string.length() >= length) {
+			return string;
+		}
+
+		final StringBuilder buffer = new StringBuilder(length);
+		buffer.append(string);
+
+		for (int i = 0; i < length - string.length(); i++) {
+			buffer.append(c);
+		}
+
+		return buffer.toString();
+	}
+
+	public static String reverse(String string) {
+		if ((string == null) || "".equals(string) || (string.length() == 1)) {
+			return string;
+		}
+
+		final StringBuilder buffer = new StringBuilder(string.length());
+
+		for (int i = 0; i < string.length(); i++) {
+			buffer.append(string.charAt(string.length() - 1 - i));
+		}
+
+		return buffer.toString();
+	}
+
 	public static List<String> getRotations(String text) {
 		if ("".equals(text)) {
 			return Collections.emptyList();
