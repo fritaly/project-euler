@@ -69,7 +69,7 @@ public class Utils {
 		};
 	}
 
-	public static NumberGenerator createPentagonNumberGenerator() {
+	public static NumberGenerator createPentagonalNumberGenerator() {
 		return new NumberGenerator() {
 			@Override
 			protected long generate(long n) {

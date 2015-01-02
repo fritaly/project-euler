@@ -12,10 +12,10 @@ public class Problem45 {
 
 	public static void main(String[] args) throws IOException {
 		final Iterator<Long> triangleNumbers = Utils.createTriangleNumberGenerator();
-		final Iterator<Long> pentagonNumbers = Utils.createPentagonNumberGenerator();
-		final Iterator<Long> hexagonNumbers = Utils.createHexagonalNumberGenerator();
+		final Iterator<Long> pentagonalNumbers = Utils.createPentagonalNumberGenerator();
+		final Iterator<Long> hexagonalNumbers = Utils.createHexagonalNumberGenerator();
 
-		long t = triangleNumbers.next(), p = pentagonNumbers.next(), h = hexagonNumbers.next();
+		long t = triangleNumbers.next(), p = pentagonalNumbers.next(), h = hexagonalNumbers.next();
 
 		long max = Utils.max(t, p, h);
 
@@ -24,10 +24,10 @@ public class Problem45 {
 				t = triangleNumbers.next();
 			}
 			while (p < max) {
-				p = pentagonNumbers.next();
+				p = pentagonalNumbers.next();
 			}
 			while (h < max) {
-				h = hexagonNumbers.next();
+				h = hexagonalNumbers.next();
 			}
 			if ((t == p) && (p == h)) {
 				System.out.println(t + " is triangle, pentagonal & hexagonal");
