@@ -11,6 +11,21 @@ import java.util.TreeSet;
 
 public class Utils {
 
+	public static boolean isPalindrome(long n) {
+		final String text = String.format("%d", n);
+
+		boolean palindrome = true;
+
+		for (int i = 0; i < text.length() / 2; i++) {
+			if (text.charAt(i) != text.charAt(text.length() - 1 - i)) {
+				palindrome = false;
+				break;
+			}
+		}
+
+		return palindrome;
+	}
+
 	public static int max(int... values) {
 		int max = Integer.MIN_VALUE;
 
