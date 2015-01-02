@@ -10,6 +10,18 @@ import java.util.TreeSet;
 
 public class Utils {
 
+	public static String sort(String string) {
+		if ((string == null) || "".equals(string)) {
+			return string;
+		}
+
+		final char[] chars = string.toCharArray();
+
+		Arrays.sort(chars);
+
+		return new String(chars);
+	}
+
 	public static boolean isPalindrome(long n) {
 		return isPalindrome(String.format("%d", n));
 	}
@@ -65,6 +77,15 @@ public class Utils {
 			@Override
 			protected long generate(long n) {
 				return n * n;
+			}
+		};
+	}
+
+	public static NumberGenerator createCubeNumberGenerator() {
+		return new NumberGenerator() {
+			@Override
+			protected long generate(long n) {
+				return n * n * n;
 			}
 		};
 	}

@@ -1,7 +1,6 @@
 package com.github.fritaly.projecteuler;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Problem "Permuted multiples".
@@ -10,20 +9,8 @@ import java.util.Arrays;
  */
 public class Problem52 {
 
-	private static String sort(String string) {
-		if ((string == null) || "".equals(string)) {
-			return string;
-		}
-
-		final char[] chars = string.toCharArray();
-
-		Arrays.sort(chars);
-
-		return new String(chars);
-	}
-
 	private static boolean isPermutationOf(long number1, long number2) {
-		return sort(Long.toString(number1)).equals(sort(Long.toString(number2)));
+		return Utils.sort(Long.toString(number1)).equals(Utils.sort(Long.toString(number2)));
 	}
 
 	public static void main(String[] args) throws IOException {
