@@ -12,8 +12,14 @@ import java.util.TreeSet;
 public class Utils {
 
 	public static boolean isPalindrome(long n) {
-		final String text = String.format("%d", n);
+		return isPalindrome(String.format("%d", n));
+	}
 
+	public static boolean isPalindrome(BigInteger n) {
+		return isPalindrome(n.toString());
+	}
+
+	static boolean isPalindrome(String text) {
 		boolean palindrome = true;
 
 		for (int i = 0; i < text.length() / 2; i++) {
