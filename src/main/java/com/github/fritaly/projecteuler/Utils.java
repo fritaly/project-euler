@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -52,80 +51,56 @@ public class Utils {
 		return max;
 	}
 
-	public static Iterator<Long> createTriangleNumberGenerator() {
-		return new Iterator<Long>() {
-
-			private long n = 1;
-
+	public static NumberGenerator createTriangleNumberGenerator() {
+		return new NumberGenerator() {
 			@Override
-			public boolean hasNext() {
-				return true;
-			}
-
-			@Override
-			public Long next() {
-				final long result = n * (n + 1) / 2;
-
-				n++;
-
-				return result;
-			}
-
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
+			protected long generate(long n) {
+				return n * (n + 1) / 2;
 			}
 		};
 	}
 
-	public static Iterator<Long> createPentagonNumberGenerator() {
-		return new Iterator<Long>() {
-
-			private long n = 1;
-
+	public static NumberGenerator createSquareNumberGenerator() {
+		return new NumberGenerator() {
 			@Override
-			public boolean hasNext() {
-				return true;
-			}
-
-			@Override
-			public Long next() {
-				final long result = n * (3 * n - 1) / 2;
-
-				n++;
-
-				return result;
-			}
-
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
+			protected long generate(long n) {
+				return n * n;
 			}
 		};
 	}
 
-	public static Iterator<Long> createHexagonalNumberGenerator() {
-		return new Iterator<Long>() {
-
-			private long n = 1;
-
+	public static NumberGenerator createPentagonNumberGenerator() {
+		return new NumberGenerator() {
 			@Override
-			public boolean hasNext() {
-				return true;
+			protected long generate(long n) {
+				return n * (3 * n - 1) / 2;
 			}
+		};
+	}
 
+	public static NumberGenerator createHexagonalNumberGenerator() {
+		return new NumberGenerator() {
 			@Override
-			public Long next() {
-				final long result = n * (2 * n - 1);
-
-				n++;
-
-				return result;
+			protected long generate(long n) {
+				return n * (2 * n - 1);
 			}
+		};
+	}
 
+	public static NumberGenerator createHeptagonalNumberGenerator() {
+		return new NumberGenerator() {
 			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
+			protected long generate(long n) {
+				return n * (5 * n - 3) / 2;
+			}
+		};
+	}
+
+	public static NumberGenerator createOctagonalNumberGenerator() {
+		return new NumberGenerator() {
+			@Override
+			protected long generate(long n) {
+				return n * (3 * n - 2);
 			}
 		};
 	}
