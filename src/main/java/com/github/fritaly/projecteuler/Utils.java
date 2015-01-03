@@ -64,6 +64,26 @@ public class Utils {
 		return max;
 	}
 
+	public static int min(int... values) {
+		int min = Integer.MAX_VALUE;
+
+		for (int value : values) {
+			min = Math.min(min, value);
+		}
+
+		return min;
+	}
+
+	public static long min(long... values) {
+		long min = Long.MAX_VALUE;
+
+		for (long value : values) {
+			min = Math.min(min, value);
+		}
+
+		return min;
+	}
+
 	public static long sum(Collection<Long> values) {
 		long sum = 0;
 
