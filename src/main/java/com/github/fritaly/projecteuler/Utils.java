@@ -3,6 +3,7 @@ package com.github.fritaly.projecteuler;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +31,7 @@ public class Utils {
 		return isPalindrome(n.toString());
 	}
 
-	static boolean isPalindrome(String text) {
+	public static boolean isPalindrome(String text) {
 		boolean palindrome = true;
 
 		for (int i = 0; i < text.length() / 2; i++) {
@@ -61,6 +62,16 @@ public class Utils {
 		}
 
 		return max;
+	}
+
+	public static long sum(Collection<Long> values) {
+		long sum = 0;
+
+		for (Long value : values) {
+			sum += value;
+		}
+
+		return sum;
 	}
 
 	public static NumberGenerator createTriangleNumberGenerator() {
