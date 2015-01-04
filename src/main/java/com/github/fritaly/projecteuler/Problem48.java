@@ -1,7 +1,6 @@
-	package com.github.fritaly.projecteuler;
+package com.github.fritaly.projecteuler;
 
 import java.math.BigInteger;
-
 
 /**
  * Problem "Self powers".
