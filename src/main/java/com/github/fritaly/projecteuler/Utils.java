@@ -342,6 +342,17 @@ public class Utils {
 	}
 
 	public static BigInteger factorial(int n) {
-		return (n == 0) ? BigInteger.ONE : BigInteger.valueOf(n).multiply(factorial(n - 1));
+		// Use an iterative implementation to avoid stack overflows
+		if (n == 0) {
+			return BigInteger.ONE;
+		}
+
+		BigInteger result = BigInteger.ONE;
+
+		for (int i = n; i > 0; i--) {
+			result = result.multiply(BigInteger.valueOf(i));
+		}
+
+		return result;
 	}
 }
