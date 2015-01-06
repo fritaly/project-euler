@@ -24,6 +24,10 @@ public class Utils {
 		return (b == 0) ? a : gcd(b, a % b);
 	}
 
+	public static int gcd(int a, int b) {
+		return (b == 0) ? a : gcd(b, a % b);
+	}
+
 	public static String sort(String string) {
 		if ((string == null) || "".equals(string)) {
 			return string;

@@ -1,6 +1,5 @@
 package com.github.fritaly.projecteuler;
 
-
 public final class Fraction implements Comparable<Fraction> {
 
 	private final long numerator, denominator;
@@ -25,6 +24,14 @@ public final class Fraction implements Comparable<Fraction> {
 
 		this.numerator = numerator / gcd;
 		this.denominator = denominator / gcd;
+	}
+
+	public float toFloat() {
+		return ((float) numerator) / denominator;
+	}
+
+	public double toDouble() {
+		return ((double) numerator) / denominator;
 	}
 
 	public long getDenominator() {
