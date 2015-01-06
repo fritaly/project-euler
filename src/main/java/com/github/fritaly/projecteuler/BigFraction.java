@@ -2,19 +2,19 @@ package com.github.fritaly.projecteuler;
 
 import java.math.BigInteger;
 
-public final class Fraction {
+public final class BigFraction implements Comparable<BigFraction> {
 
 	private final BigInteger numerator, denominator;
 
-	public Fraction(long numerator) {
+	public BigFraction(long numerator) {
 		this(BigInteger.valueOf(numerator), BigInteger.ONE);
 	}
 
-	public Fraction(long numerator, long denominator) {
+	public BigFraction(long numerator, long denominator) {
 		this(BigInteger.valueOf(numerator), BigInteger.valueOf(denominator));
 	}
 
-	public Fraction(BigInteger numerator, BigInteger denominator) {
+	public BigFraction(BigInteger numerator, BigInteger denominator) {
 		if (BigInteger.ZERO.equals(denominator)) {
 			throw new IllegalArgumentException("The denominator can't be zero");
 		}
@@ -40,12 +40,12 @@ public final class Fraction {
 		return numerator;
 	}
 
-	public Fraction multiply(Fraction other) {
+	public BigFraction multiply(BigFraction other) {
 		if (other == null) {
 			throw new IllegalArgumentException("The given fraction is null");
 		}
 
-		return new Fraction(this.numerator.multiply(other.numerator), this.denominator.multiply(other.denominator));
+		return new BigFraction(this.numerator.multiply(other.numerator), this.denominator.multiply(other.denominator));
 	}
 
 	// lcm = "lowest common multiple"
@@ -53,7 +53,7 @@ public final class Fraction {
 		return b.multiply(a).divide(a.gcd(b));
 	}
 
-	public Fraction add(Fraction other) {
+	public BigFraction add(BigFraction other) {
 		if (other == null) {
 			throw new IllegalArgumentException("The given fraction is null");
 		}
@@ -63,18 +63,18 @@ public final class Fraction {
 		final BigInteger a = lcm.divide(this.denominator).multiply(this.numerator);
 		final BigInteger b = lcm.divide(other.denominator).multiply(other.numerator);
 
-		return new Fraction(a.add(b), lcm);
+		return new BigFraction(a.add(b), lcm);
 	}
 
-	public Fraction reciprocal() {
+	public BigFraction reciprocal() {
 		// The constructor will raise an IllegalArgumentException if the
 		// numerator is 0
-		return new Fraction(denominator, numerator);
+		return new BigFraction(denominator, numerator);
 	}
 
-	public Fraction opposite() {
+	public BigFraction opposite() {
 		// The denominator should never be negative
-		return new Fraction(numerator.negate(), denominator);
+		return new BigFraction(numerator.negate(), denominator);
 	}
 
 	public String toText() {
@@ -104,13 +104,18 @@ public final class Fraction {
 		if (obj == this) {
 			return true;
 		}
-		if (obj instanceof Fraction) {
-			final Fraction other = (Fraction) obj;
+		if (obj instanceof BigFraction) {
+			final BigFraction other = (BigFraction) obj;
 
 			// The fractions are reduced upon instantiation
 			return (this.numerator.equals(other.numerator) && this.denominator.equals(other.denominator));
 		}
 
 		return false;
+	}
+
+	@Override
+	public int compareTo(BigFraction other) {
+		return this.numerator.multiply(other.denominator).compareTo(other.numerator.multiply(this.denominator));
 	}
 }

@@ -25,10 +25,10 @@ public class Problem65 {
 
 		System.out.println(terms);
 
-		Fraction fraction = new Fraction(terms.removeLast());
+		BigFraction fraction = new BigFraction(terms.removeLast());
 
 		while (!terms.isEmpty()) {
-			fraction = new Fraction(terms.removeLast()).add(fraction.reciprocal());
+			fraction = new BigFraction(terms.removeLast()).add(fraction.reciprocal());
 		}
 
 		int sum = 0;
