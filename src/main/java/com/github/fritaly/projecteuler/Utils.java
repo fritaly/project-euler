@@ -11,6 +11,19 @@ import java.util.TreeSet;
 
 public class Utils {
 
+	/**
+	 * Returns the greatest common divisor between a and b.
+	 *
+	 * @param a
+	 *            an integer value.
+	 * @param b
+	 *            an integer value.
+	 * @return the greatest common divisor between a and b.
+	 */
+	public static long gcd(long a, long b) {
+		return (b == 0) ? a : gcd(b, a % b);
+	}
+
 	public static String sort(String string) {
 		if ((string == null) || "".equals(string)) {
 			return string;
